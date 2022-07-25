@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated Terminplaner -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="Terminplaner.presentation.TerminplanerModelWizardID"
+            name="%_UI_TerminplanerModelWizard_label"
+            class="Terminplaner.presentation.TerminplanerModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/TerminplanerModelFile.gif">
+         <description>%_UI_TerminplanerModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated Terminplaner -->
+      <editor
+            id="Terminplaner.presentation.TerminplanerEditorID"
+            name="%_UI_TerminplanerEditor_label"
+            icon="icons/full/obj16/TerminplanerModelFile.gif"
+            extensions="terminplaner"
+            class="Terminplaner.presentation.TerminplanerEditor"
+            contributorClass="Terminplaner.presentation.TerminplanerActionBarContributor">
+      </editor>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="de.thm.MyTerminplanerCommand"
+            name="GeneratorCommand">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
+         <command
+               commandId="de.thm.MyTerminplanerCommand"
+               label="Generate Code from this model"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="de.thm.terminplaner.editor.MyTerminplanerHandler"
+            commandId="de.thm.MyTerminplanerCommand">
+         <enabledWhen>
+            <with
+                  variable="selection">
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                  <adapt
+                        type="org.eclipse.core.resources.IFile">
+                     <or>
+                        <test
+                              property="org.eclipse.core.resources.extension"
+                              value="terminplaner">
+                        </test>
+                     </or>
+                  </adapt>
+               </iterate>
+            </with>
+         </enabledWhen>
+      </handler>
+   </extension>
+   
+
+</plugin>

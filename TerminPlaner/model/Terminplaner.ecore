@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Terminplaner" nsURI="de.thm" nsPrefix="de.thm">
+  <eClassifiers xsi:type="ecore:EClass" name="Termin">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="beschreibung" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="datum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nutzer" upperBound="-1"
+        eType="#//Nutzer" eOpposite="#//Nutzer/termine"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Nutzer">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vorname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nachname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="termine" upperBound="-1"
+        eType="#//Termin" eOpposite="#//Termin/nutzer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="projekte" upperBound="-1"
+        eType="#//Projekt" eOpposite="#//Projekt/nutzer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Projekt">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="beschreibung" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nutzer" upperBound="-1"
+        eType="#//Nutzer" eOpposite="#//Nutzer/projekte"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Kalender">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="projekte" upperBound="-1"
+        eType="#//Projekt" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="termine" upperBound="-1"
+        eType="#//Termin" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nutzer" upperBound="-1"
+        eType="#//Nutzer" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>
