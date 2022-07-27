@@ -1,0 +1,77 @@
+@font-face {
+    font-family: Poppins-Bold;
+    src: url('Poppins-Bold.ttf'); 
+}
+
+* {
+	margin: 0px; 
+	padding: 0px; 
+	box-sizing: border-box;
+}
+
+body {
+    font-family: Poppins-Bold, sans-serif;
+    margin: 0px;
+}
+
+.top{
+    background: #1abc9c;
+    color: white;
+}
+
+.name {
+    padding-top: 30px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    text-align: left;
+    font-size: 30px;
+}
+
+.beschreibung {
+    padding-bottom: 30px;
+    padding-left: 50px;
+    font-size: 15px;
+}
+
+.bottom {
+    padding-top: 20px;
+}
+
+.liste {
+    padding-top: 10px;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+.teilnehmer {
+    padding-left: 30px;
+    padding-bottom: 30px;
+    font-size: 20px;
+}
+
+.teilnehmer .liste {
+    padding-top: 10px;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+.ort {
+    padding-left: 30px;
+    font-size: 20px;
+}
+
+.ort .name {
+    padding-top: 10px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+.image {
+    height: 20px;
+}
+
+.zeit {
+    padding-left: 30px;
+    font-size: 20px;
+}
