@@ -9,6 +9,8 @@
 	box-sizing: border-box;
 }
 
+ul {list-style-type: none;}
+
 body {
     font-family: Poppins-Bold, sans-serif;
     margin: 0px;
