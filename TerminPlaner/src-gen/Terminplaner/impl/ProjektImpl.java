@@ -273,19 +273,13 @@ public class ProjektImpl extends MinimalEObjectImpl.Container implements Projekt
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * NOT @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", beschreibung: ");
-		result.append(beschreibung);
-		result.append(')');
-		return result.toString();
+		char[] nameArr = name.toCharArray();
+		nameArr[0] = Character.toUpperCase(nameArr[0]);
+		return new String(nameArr);
 	}
 
 } //ProjektImpl

@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.resource.Resource
 import Terminplaner.Kalender
 import Terminplaner.Nutzer
+import Terminplaner.Projekt
 
 class SimpleGenerator {
 	
@@ -23,7 +24,7 @@ class SimpleGenerator {
 	/**
 	 * The base package name.
 	 */
-	public static final String PACKAGE = "de.thm.xtendEMF.";
+	public static final String PACKAGE = "de.thm.";
 	public static final String PACKAGE_PATH = "/" + PACKAGE.replaceAll("\\.", "/");
 
 	def void doGenerate(Resource resourceEcore, IProject project, IProgressMonitor progressMonitor) {
@@ -48,40 +49,46 @@ class SimpleGenerator {
 			if (!folder.exists()) {
 				folder.create(true, true, new NullProgressMonitor());
 			}
-			folder = project.getFolder(SOURCE_FOLDER_PATH + "/de/thm/xtendEMF");
+
+			var IFolder userFolder = project.getFolder(SOURCE_FOLDER_PATH + PACKAGE_PATH + "nutzer");
 			if (!folder.exists()) {
 				folder.create(true, true, new NullProgressMonitor());
 			}
-
-			// create entity package folder
-			folder = project.getFolder(SOURCE_FOLDER_PATH + PACKAGE_PATH + "entities");
+			
+			var IFolder projectsFolder = project.getFolder(SOURCE_FOLDER_PATH + PACKAGE_PATH + "projekte");
 			if (!folder.exists()) {
 				folder.create(true, true, new NullProgressMonitor());
 			}
-
-			/*
-			 * We start to generate the classes for our application. First we create the *Gen classes, then die classes which extends the *Gen classes, in which the
-			 * user can to customizations.
-			 */
-			// create Entities
-			var IFolder entityFolder = project.getFolder(SOURCE_FOLDER_PATH + PACKAGE_PATH + "entities");
-			progressMonitor.subTask("Generating Entities");
-			for (Kalender e : resourceEcore.allContents.toIterable.filter(typeof(Kalender))) {
-
-				for (Nutzer p : e.nutzer) {
-					
-						// create Entity
-						var content = compileEntities(p)
-						createFile(
-							entityFolder,
-							p.termine + ".txt",
-							false,
-							content,
-							progressMonitor
-						);
-					
+			
+			var IFolder meetingFolder = project.getFolder(SOURCE_FOLDER_PATH + PACKAGE_PATH + "termine");
+			if (!folder.exists()) {
+				folder.create(true, true, new NullProgressMonitor());
+			}
+			
+			
+			for (Kalender k : resourceEcore.allContents.toIterable.filter(typeof(Kalender))) {
+				progressMonitor.subTask("Generating User");
+				for (Nutzer n : k.nutzer) {
+					var content = compileUser(n)
+					createFile(
+						userFolder,
+						'''«n.toString».html''',
+						false,
+						content,
+						progressMonitor
+					);	
 				}
-
+				progressMonitor.subTask("Generating Projects");
+				for (Projekt p : k.projekte) {
+					var content = compileProjects(p)
+					createFile(
+						projectsFolder,
+						'''«p.toString».html''',
+						false,
+						content,
+						progressMonitor
+					);	
+				}
 			}
 
 			// finish the progress monitor
@@ -93,12 +100,379 @@ class SimpleGenerator {
 
 	}
 
-	def compileEntities(Nutzer e) {
+	def compileUser(Nutzer n) {
 		'''
-			Hier steht einiges �ber ITems muss ich sagen:
-			
-			Konkret geht es um dieses ITem: �e.productName� Da
-			bin ich mir wirklich sicher!
+		<!DOCTYPE html>
+		<html lang="en">
+		  <head>
+		    <meta charset="UTF-8" />
+		    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		    <link rel="stylesheet" href="benutzer.css" />
+		    <title>«n.toString»</title>
+		  </head>
+		  <body>
+		    <div class="top">
+		      <div class="name"><b>«n.toString»</b></div>
+		    </div>
+		    <div class="bottom">
+		      <div class="projekte">
+		        <img class="image" src="../images/projekt.png" alt="IMG" />
+		        <b>Projekte:</b>
+		        <div class="liste">
+		        	«FOR p : n.projekte»
+		        	«p.name»<br />
+			        «ENDFOR»
+		        </div>
+		      </div>
+		
+		      <div class="month">
+		        <ul>
+		          <li class="prev">&#10094;</li>
+		          <li class="next">&#10095;</li>
+		          <li>
+		            Jahr<br /><span style="font-size: 18px">Monat</span><br /><span
+		              style="font-size: 12px"
+		              >Kalenderwoche</span
+		            >
+		          </li>
+		        </ul>
+		      </div>
+		      <ul class="weekdays">
+		        <li>Zeit</li>
+		        <li>Mo</li>
+		        <li>Di</li>
+		        <li>Mi</li>
+		        <li>Do</li>
+		        <li>Fr</li>
+		        <li>Sa</li>
+		        <li>So</li>
+		      </ul>
+		      <ul class="times">
+		        <div class="time">
+		          <div class="row">
+		            <li>8:00 - 9:00</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <hr />
+		          <div class="row">
+		            <li>9:00 - 10:00</li>
+		            <li class="meeting">Termin 1</li>
+		            <li></li>
+		            <li></li>
+		            <li>Termin 2</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <hr />
+		          <div class="row">
+		            <li>10:00 - 11:00</li>
+		            <li class="meeting">s</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <hr />
+		          <div class="row">
+		            <li>11:00 - 12:00</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <hr />
+		          <div class="row">
+		            <li>12:00 - 13:00</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <hr />
+		          <div class="row">
+		            <li>13:00 - 14:00</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <hr />
+		          <div class="row">
+		            <li>14:00 - 15:00</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <hr />
+		          <div class="row">
+		            <li>15:00 - 16:00</li>
+		            <li>Termin 3</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <hr />
+		          <div class="row">
+		            <li>16:00 - 17:00</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <hr />
+		          <div class="row">
+		            <li>17:00 - 18:00</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <hr />
+		          <div class="row">
+		            <li>18:00 - 19:00</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li>Termin 4</li>
+		          </div>
+		          <hr />
+		          <div class="row">
+		            <li>19:00 - 20:00</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		        </div>
+		      </ul>
+		    </div>
+		  </body>
+		</html>
+		'''
+	}
+	
+	def compileProjects(Projekt p) {
+		'''
+		<!DOCTYPE html>
+		<html lang="en">
+		  <head>
+		    <meta charset="UTF-8" />
+		    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		    <link rel="stylesheet" href="projekt.css" />
+		    <title>«p.name»</title>
+		  </head>
+		  <body>
+		    <div class="top">
+		      <div class="name"><b>Geschäftsessen</b></div>
+		      <div class="beschreibung">
+		        «p.beschreibung»
+		      </div>
+		    </div>
+		    <div class="bottom">
+		      <div class="teilnehmer">
+		        <img class="image" src="../images/people.png" alt="IMG" />
+		        <b>Teilnehmer:</b>
+		        <div class="liste">
+		        	«FOR n : p.nutzer»
+		        	«n.toString»
+		        	«ENDFOR»
+		        </div>
+		      </div>
+		      <div class="ort">
+		        <img class="image" src="../images/location.png" alt="IMG" />
+		        <b>Ort:</b>
+		        <div class="name">Moriki Frankfurt</div>
+		      </div>
+		
+		      <div class="month">
+		        <ul>
+		          <li class="prev">&#10094;</li>
+		          <li class="next">&#10095;</li>
+		          <li>
+		            Jahr<br /><span style="font-size: 18px">Monat</span><br /><span
+		              style="font-size: 12px"
+		              >Kalenderwoche</span
+		            >
+		          </li>
+		        </ul>
+		      </div>
+		      <ul class="weekdays">
+		        <li>Zeit</li>
+		        <li>Mo</li>
+		        <li>Di</li>
+		        <li>Mi</li>
+		        <li>Do</li>
+		        <li>Fr</li>
+		        <li>Sa</li>
+		        <li>So</li>
+		      </ul>
+		      <ul class="times">
+		        <div class="time">
+		          <div>
+		            <li>8:00 - 9:00</li>
+		            <li>Termin 1</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <div>
+		            <li>9:00 - 10:00</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li>Termin 2</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <div>
+		            <li>10:00 - 11:00</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <div>
+		            <li>11:00 - 12:00</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <div>
+		            <li>12:00 - 13:00</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <div>
+		            <li>13:00 - 14:00</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <div>
+		            <li>14:00 - 15:00</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <div>
+		            <li>15:00 - 16:00</li>
+		            <li>Termin 3</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <div>
+		            <li>16:00 - 17:00</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <div>
+		            <li>17:00 - 18:00</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		          <div>
+		            <li>18:00 - 19:00</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li>Termin 4</li>
+		          </div>
+		          <div>
+		            <li>19:00 - 20:00</li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		            <li></li>
+		          </div>
+		        </div>
+		      </ul>
+		    </div>
+		  </body>
+		</html>
+		
 		'''
 	}
 
@@ -109,8 +483,7 @@ class SimpleGenerator {
 	/**
 	 * Creates a file (containing the content-CharSequence) within the given IFolder.
 	 */
-	def void createFile(IFolder folder, String fileName, boolean overrideFile, CharSequence content,
-		IProgressMonitor progressMonitor) {
+	def void createFile(IFolder folder, String fileName, boolean overrideFile, CharSequence content, IProgressMonitor progressMonitor) {
 		if (progressMonitor.canceled) {
 			throw new RuntimeException("Progress canceled");
 		}
@@ -118,22 +491,19 @@ class SimpleGenerator {
 			folder.create(true, true, null);
 		}
 		var IFile iFile = folder.getFile(fileName);
-		// TODO, nur in der Testphase
 		if (iFile.exists && true /*overrideFile*/ ) {
 			iFile.delete(true, null);
 		}
 		if (!iFile.exists) {
-			// process the code
 			var String formattedCode = content.toString
 
 			var byte[] bytes
-			if (formattedCode !== null) { // has the code been formatted?
+			if (formattedCode !== null) { 
 				bytes = formattedCode.getBytes();
-			} else { // code could not be formatted
+			} else {
 				bytes = content.toString.bytes;
 				System.err.println("File " + fileName + " could not be formatted.")
 			}
-			// save the file
 			var InputStream source = new ByteArrayInputStream(bytes);
 			iFile.create(source, true, null);
 		}
