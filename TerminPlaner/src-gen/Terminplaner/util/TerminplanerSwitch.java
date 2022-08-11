@@ -84,9 +84,9 @@ public class TerminplanerSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TerminplanerPackage.KALENDER: {
-				Kalender kalender = (Kalender)theEObject;
-				T result = caseKalender(kalender);
+			case TerminplanerPackage.VERWALTUNGSSYSTEM: {
+				Verwaltungssystem verwaltungssystem = (Verwaltungssystem)theEObject;
+				T result = caseVerwaltungssystem(verwaltungssystem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -140,17 +140,17 @@ public class TerminplanerSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Kalender</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Verwaltungssystem</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Kalender</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Verwaltungssystem</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseKalender(Kalender object) {
+	public T caseVerwaltungssystem(Verwaltungssystem object) {
 		return null;
 	}
 

@@ -59,7 +59,7 @@ public class TerminplanerFactoryImpl extends EFactoryImpl implements Terminplane
 			case TerminplanerPackage.TERMIN: return createTermin();
 			case TerminplanerPackage.NUTZER: return createNutzer();
 			case TerminplanerPackage.PROJEKT: return createProjekt();
-			case TerminplanerPackage.KALENDER: return createKalender();
+			case TerminplanerPackage.VERWALTUNGSSYSTEM: return createVerwaltungssystem();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -100,9 +100,9 @@ public class TerminplanerFactoryImpl extends EFactoryImpl implements Terminplane
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Kalender createKalender() {
-		KalenderImpl kalender = new KalenderImpl();
-		return kalender;
+	public Verwaltungssystem createVerwaltungssystem() {
+		VerwaltungssystemImpl verwaltungssystem = new VerwaltungssystemImpl();
+		return verwaltungssystem;
 	}
 
 	/**

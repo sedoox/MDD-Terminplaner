@@ -85,13 +85,13 @@ public interface TerminplanerPackage extends EPackage {
 	int TERMIN__BESCHREIBUNG = 1;
 
 	/**
-	 * The feature id for the '<em><b>Datum</b></em>' attribute.
+	 * The feature id for the '<em><b>Start Datum</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TERMIN__DATUM = 2;
+	int TERMIN__START_DATUM = 2;
 
 	/**
 	 * The feature id for the '<em><b>Nutzer</b></em>' reference list.
@@ -103,13 +103,31 @@ public interface TerminplanerPackage extends EPackage {
 	int TERMIN__NUTZER = 3;
 
 	/**
+	 * The feature id for the '<em><b>End Datum</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERMIN__END_DATUM = 4;
+
+	/**
+	 * The feature id for the '<em><b>Ort</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERMIN__ORT = 5;
+
+	/**
 	 * The number of structural features of the '<em>Termin</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TERMIN_FEATURE_COUNT = 4;
+	int TERMIN_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Termin</em>' class.
@@ -222,13 +240,22 @@ public interface TerminplanerPackage extends EPackage {
 	int PROJEKT__NUTZER = 2;
 
 	/**
+	 * The feature id for the '<em><b>Termine</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJEKT__TERMINE = 3;
+
+	/**
 	 * The number of structural features of the '<em>Projekt</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJEKT_FEATURE_COUNT = 3;
+	int PROJEKT_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Projekt</em>' class.
@@ -240,14 +267,14 @@ public interface TerminplanerPackage extends EPackage {
 	int PROJEKT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link Terminplaner.impl.KalenderImpl <em>Kalender</em>}' class.
+	 * The meta object id for the '{@link Terminplaner.impl.VerwaltungssystemImpl <em>Verwaltungssystem</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Terminplaner.impl.KalenderImpl
-	 * @see Terminplaner.impl.TerminplanerPackageImpl#getKalender()
+	 * @see Terminplaner.impl.VerwaltungssystemImpl
+	 * @see Terminplaner.impl.TerminplanerPackageImpl#getVerwaltungssystem()
 	 * @generated
 	 */
-	int KALENDER = 3;
+	int VERWALTUNGSSYSTEM = 3;
 
 	/**
 	 * The feature id for the '<em><b>Projekte</b></em>' containment reference list.
@@ -256,7 +283,7 @@ public interface TerminplanerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KALENDER__PROJEKTE = 0;
+	int VERWALTUNGSSYSTEM__PROJEKTE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Termine</b></em>' containment reference list.
@@ -265,7 +292,7 @@ public interface TerminplanerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KALENDER__TERMINE = 1;
+	int VERWALTUNGSSYSTEM__TERMINE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Nutzer</b></em>' containment reference list.
@@ -274,26 +301,25 @@ public interface TerminplanerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KALENDER__NUTZER = 2;
+	int VERWALTUNGSSYSTEM__NUTZER = 2;
 
 	/**
-	 * The number of structural features of the '<em>Kalender</em>' class.
+	 * The number of structural features of the '<em>Verwaltungssystem</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KALENDER_FEATURE_COUNT = 3;
+	int VERWALTUNGSSYSTEM_FEATURE_COUNT = 3;
 
 	/**
-	 * The number of operations of the '<em>Kalender</em>' class.
+	 * The number of operations of the '<em>Verwaltungssystem</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KALENDER_OPERATION_COUNT = 0;
-
+	int VERWALTUNGSSYSTEM_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link Terminplaner.Termin <em>Termin</em>}'.
@@ -328,15 +354,15 @@ public interface TerminplanerPackage extends EPackage {
 	EAttribute getTermin_Beschreibung();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Terminplaner.Termin#getDatum <em>Datum</em>}'.
+	 * Returns the meta object for the attribute '{@link Terminplaner.Termin#getStartDatum <em>Start Datum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Datum</em>'.
-	 * @see Terminplaner.Termin#getDatum()
+	 * @return the meta object for the attribute '<em>Start Datum</em>'.
+	 * @see Terminplaner.Termin#getStartDatum()
 	 * @see #getTermin()
 	 * @generated
 	 */
-	EAttribute getTermin_Datum();
+	EAttribute getTermin_StartDatum();
 
 	/**
 	 * Returns the meta object for the reference list '{@link Terminplaner.Termin#getNutzer <em>Nutzer</em>}'.
@@ -348,6 +374,28 @@ public interface TerminplanerPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTermin_Nutzer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Terminplaner.Termin#getEndDatum <em>End Datum</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>End Datum</em>'.
+	 * @see Terminplaner.Termin#getEndDatum()
+	 * @see #getTermin()
+	 * @generated
+	 */
+	EAttribute getTermin_EndDatum();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Terminplaner.Termin#getOrt <em>Ort</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Ort</em>'.
+	 * @see Terminplaner.Termin#getOrt()
+	 * @see #getTermin()
+	 * @generated
+	 */
+	EAttribute getTermin_Ort();
 
 	/**
 	 * Returns the meta object for class '{@link Terminplaner.Nutzer <em>Nutzer</em>}'.
@@ -447,47 +495,58 @@ public interface TerminplanerPackage extends EPackage {
 	EReference getProjekt_Nutzer();
 
 	/**
-	 * Returns the meta object for class '{@link Terminplaner.Kalender <em>Kalender</em>}'.
+	 * Returns the meta object for the reference '{@link Terminplaner.Projekt#getTermine <em>Termine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Kalender</em>'.
-	 * @see Terminplaner.Kalender
+	 * @return the meta object for the reference '<em>Termine</em>'.
+	 * @see Terminplaner.Projekt#getTermine()
+	 * @see #getProjekt()
 	 * @generated
 	 */
-	EClass getKalender();
+	EReference getProjekt_Termine();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Terminplaner.Kalender#getProjekte <em>Projekte</em>}'.
+	 * Returns the meta object for class '{@link Terminplaner.Verwaltungssystem <em>Verwaltungssystem</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Verwaltungssystem</em>'.
+	 * @see Terminplaner.Verwaltungssystem
+	 * @generated
+	 */
+	EClass getVerwaltungssystem();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Terminplaner.Verwaltungssystem#getProjekte <em>Projekte</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Projekte</em>'.
-	 * @see Terminplaner.Kalender#getProjekte()
-	 * @see #getKalender()
+	 * @see Terminplaner.Verwaltungssystem#getProjekte()
+	 * @see #getVerwaltungssystem()
 	 * @generated
 	 */
-	EReference getKalender_Projekte();
+	EReference getVerwaltungssystem_Projekte();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Terminplaner.Kalender#getTermine <em>Termine</em>}'.
+	 * Returns the meta object for the containment reference list '{@link Terminplaner.Verwaltungssystem#getTermine <em>Termine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Termine</em>'.
-	 * @see Terminplaner.Kalender#getTermine()
-	 * @see #getKalender()
+	 * @see Terminplaner.Verwaltungssystem#getTermine()
+	 * @see #getVerwaltungssystem()
 	 * @generated
 	 */
-	EReference getKalender_Termine();
+	EReference getVerwaltungssystem_Termine();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Terminplaner.Kalender#getNutzer <em>Nutzer</em>}'.
+	 * Returns the meta object for the containment reference list '{@link Terminplaner.Verwaltungssystem#getNutzer <em>Nutzer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Nutzer</em>'.
-	 * @see Terminplaner.Kalender#getNutzer()
-	 * @see #getKalender()
+	 * @see Terminplaner.Verwaltungssystem#getNutzer()
+	 * @see #getVerwaltungssystem()
 	 * @generated
 	 */
-	EReference getKalender_Nutzer();
+	EReference getVerwaltungssystem_Nutzer();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -539,12 +598,12 @@ public interface TerminplanerPackage extends EPackage {
 		EAttribute TERMIN__BESCHREIBUNG = eINSTANCE.getTermin_Beschreibung();
 
 		/**
-		 * The meta object literal for the '<em><b>Datum</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Start Datum</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TERMIN__DATUM = eINSTANCE.getTermin_Datum();
+		EAttribute TERMIN__START_DATUM = eINSTANCE.getTermin_StartDatum();
 
 		/**
 		 * The meta object literal for the '<em><b>Nutzer</b></em>' reference list feature.
@@ -553,6 +612,22 @@ public interface TerminplanerPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TERMIN__NUTZER = eINSTANCE.getTermin_Nutzer();
+
+		/**
+		 * The meta object literal for the '<em><b>End Datum</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TERMIN__END_DATUM = eINSTANCE.getTermin_EndDatum();
+
+		/**
+		 * The meta object literal for the '<em><b>Ort</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TERMIN__ORT = eINSTANCE.getTermin_Ort();
 
 		/**
 		 * The meta object literal for the '{@link Terminplaner.impl.NutzerImpl <em>Nutzer</em>}' class.
@@ -631,14 +706,22 @@ public interface TerminplanerPackage extends EPackage {
 		EReference PROJEKT__NUTZER = eINSTANCE.getProjekt_Nutzer();
 
 		/**
-		 * The meta object literal for the '{@link Terminplaner.impl.KalenderImpl <em>Kalender</em>}' class.
+		 * The meta object literal for the '<em><b>Termine</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Terminplaner.impl.KalenderImpl
-		 * @see Terminplaner.impl.TerminplanerPackageImpl#getKalender()
 		 * @generated
 		 */
-		EClass KALENDER = eINSTANCE.getKalender();
+		EReference PROJEKT__TERMINE = eINSTANCE.getProjekt_Termine();
+
+		/**
+		 * The meta object literal for the '{@link Terminplaner.impl.VerwaltungssystemImpl <em>Verwaltungssystem</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Terminplaner.impl.VerwaltungssystemImpl
+		 * @see Terminplaner.impl.TerminplanerPackageImpl#getVerwaltungssystem()
+		 * @generated
+		 */
+		EClass VERWALTUNGSSYSTEM = eINSTANCE.getVerwaltungssystem();
 
 		/**
 		 * The meta object literal for the '<em><b>Projekte</b></em>' containment reference list feature.
@@ -646,7 +729,7 @@ public interface TerminplanerPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference KALENDER__PROJEKTE = eINSTANCE.getKalender_Projekte();
+		EReference VERWALTUNGSSYSTEM__PROJEKTE = eINSTANCE.getVerwaltungssystem_Projekte();
 
 		/**
 		 * The meta object literal for the '<em><b>Termine</b></em>' containment reference list feature.
@@ -654,7 +737,7 @@ public interface TerminplanerPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference KALENDER__TERMINE = eINSTANCE.getKalender_Termine();
+		EReference VERWALTUNGSSYSTEM__TERMINE = eINSTANCE.getVerwaltungssystem_Termine();
 
 		/**
 		 * The meta object literal for the '<em><b>Nutzer</b></em>' containment reference list feature.
@@ -662,7 +745,7 @@ public interface TerminplanerPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference KALENDER__NUTZER = eINSTANCE.getKalender_Nutzer();
+		EReference VERWALTUNGSSYSTEM__NUTZER = eINSTANCE.getVerwaltungssystem_Nutzer();
 
 	}
 

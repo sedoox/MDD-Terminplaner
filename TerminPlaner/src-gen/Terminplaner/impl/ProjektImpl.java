@@ -4,6 +4,7 @@ package Terminplaner.impl;
 
 import Terminplaner.Nutzer;
 import Terminplaner.Projekt;
+import Terminplaner.Termin;
 import Terminplaner.TerminplanerPackage;
 
 import java.util.Collection;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link Terminplaner.impl.ProjektImpl#getName <em>Name</em>}</li>
  *   <li>{@link Terminplaner.impl.ProjektImpl#getBeschreibung <em>Beschreibung</em>}</li>
  *   <li>{@link Terminplaner.impl.ProjektImpl#getNutzer <em>Nutzer</em>}</li>
+ *   <li>{@link Terminplaner.impl.ProjektImpl#getTermine <em>Termine</em>}</li>
  * </ul>
  *
  * @generated
@@ -87,6 +89,16 @@ public class ProjektImpl extends MinimalEObjectImpl.Container implements Projekt
 	 * @ordered
 	 */
 	protected EList<Nutzer> nutzer;
+
+	/**
+	 * The cached value of the '{@link #getTermine() <em>Termine</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTermine()
+	 * @generated
+	 * @ordered
+	 */
+	protected Termin termine;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -166,6 +178,44 @@ public class ProjektImpl extends MinimalEObjectImpl.Container implements Projekt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Termin getTermine() {
+		if (termine != null && termine.eIsProxy()) {
+			InternalEObject oldTermine = (InternalEObject)termine;
+			termine = (Termin)eResolveProxy(oldTermine);
+			if (termine != oldTermine) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TerminplanerPackage.PROJEKT__TERMINE, oldTermine, termine));
+			}
+		}
+		return termine;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Termin basicGetTermine() {
+		return termine;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTermine(Termin newTermine) {
+		Termin oldTermine = termine;
+		termine = newTermine;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TerminplanerPackage.PROJEKT__TERMINE, oldTermine, termine));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -204,6 +254,9 @@ public class ProjektImpl extends MinimalEObjectImpl.Container implements Projekt
 				return getBeschreibung();
 			case TerminplanerPackage.PROJEKT__NUTZER:
 				return getNutzer();
+			case TerminplanerPackage.PROJEKT__TERMINE:
+				if (resolve) return getTermine();
+				return basicGetTermine();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -227,6 +280,9 @@ public class ProjektImpl extends MinimalEObjectImpl.Container implements Projekt
 				getNutzer().clear();
 				getNutzer().addAll((Collection<? extends Nutzer>)newValue);
 				return;
+			case TerminplanerPackage.PROJEKT__TERMINE:
+				setTermine((Termin)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -248,6 +304,9 @@ public class ProjektImpl extends MinimalEObjectImpl.Container implements Projekt
 			case TerminplanerPackage.PROJEKT__NUTZER:
 				getNutzer().clear();
 				return;
+			case TerminplanerPackage.PROJEKT__TERMINE:
+				setTermine((Termin)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -266,6 +325,8 @@ public class ProjektImpl extends MinimalEObjectImpl.Container implements Projekt
 				return BESCHREIBUNG_EDEFAULT == null ? beschreibung != null : !BESCHREIBUNG_EDEFAULT.equals(beschreibung);
 			case TerminplanerPackage.PROJEKT__NUTZER:
 				return nutzer != null && !nutzer.isEmpty();
+			case TerminplanerPackage.PROJEKT__TERMINE:
+				return termine != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -273,13 +334,19 @@ public class ProjektImpl extends MinimalEObjectImpl.Container implements Projekt
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * NOT @generated
+	 * @generated
 	 */
 	@Override
 	public String toString() {
-		char[] nameArr = name.toCharArray();
-		nameArr[0] = Character.toUpperCase(nameArr[0]);
-		return new String(nameArr);
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", beschreibung: ");
+		result.append(beschreibung);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ProjektImpl

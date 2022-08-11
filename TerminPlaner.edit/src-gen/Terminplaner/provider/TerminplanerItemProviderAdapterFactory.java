@@ -141,26 +141,26 @@ public class TerminplanerItemProviderAdapterFactory extends TerminplanerAdapterF
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Terminplaner.Kalender} instances.
+	 * This keeps track of the one adapter used for all {@link Terminplaner.Verwaltungssystem} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected KalenderItemProvider kalenderItemProvider;
+	protected VerwaltungssystemItemProvider verwaltungssystemItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Terminplaner.Kalender}.
+	 * This creates an adapter for a {@link Terminplaner.Verwaltungssystem}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createKalenderAdapter() {
-		if (kalenderItemProvider == null) {
-			kalenderItemProvider = new KalenderItemProvider(this);
+	public Adapter createVerwaltungssystemAdapter() {
+		if (verwaltungssystemItemProvider == null) {
+			verwaltungssystemItemProvider = new VerwaltungssystemItemProvider(this);
 		}
 
-		return kalenderItemProvider;
+		return verwaltungssystemItemProvider;
 	}
 
 	/**
@@ -265,7 +265,7 @@ public class TerminplanerItemProviderAdapterFactory extends TerminplanerAdapterF
 		if (terminItemProvider != null) terminItemProvider.dispose();
 		if (nutzerItemProvider != null) nutzerItemProvider.dispose();
 		if (projektItemProvider != null) projektItemProvider.dispose();
-		if (kalenderItemProvider != null) kalenderItemProvider.dispose();
+		if (verwaltungssystemItemProvider != null) verwaltungssystemItemProvider.dispose();
 	}
 
 }

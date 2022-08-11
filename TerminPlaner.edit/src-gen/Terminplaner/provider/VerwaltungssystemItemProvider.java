@@ -3,9 +3,9 @@
 package Terminplaner.provider;
 
 
-import Terminplaner.Kalender;
 import Terminplaner.TerminplanerFactory;
 import Terminplaner.TerminplanerPackage;
+import Terminplaner.Verwaltungssystem;
 
 import java.util.Collection;
 import java.util.List;
@@ -27,12 +27,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link Terminplaner.Kalender} object.
+ * This is the item provider adapter for a {@link Terminplaner.Verwaltungssystem} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class KalenderItemProvider 
+public class VerwaltungssystemItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -46,7 +46,7 @@ public class KalenderItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public KalenderItemProvider(AdapterFactory adapterFactory) {
+	public VerwaltungssystemItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -77,9 +77,9 @@ public class KalenderItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(TerminplanerPackage.Literals.KALENDER__PROJEKTE);
-			childrenFeatures.add(TerminplanerPackage.Literals.KALENDER__TERMINE);
-			childrenFeatures.add(TerminplanerPackage.Literals.KALENDER__NUTZER);
+			childrenFeatures.add(TerminplanerPackage.Literals.VERWALTUNGSSYSTEM__PROJEKTE);
+			childrenFeatures.add(TerminplanerPackage.Literals.VERWALTUNGSSYSTEM__TERMINE);
+			childrenFeatures.add(TerminplanerPackage.Literals.VERWALTUNGSSYSTEM__NUTZER);
 		}
 		return childrenFeatures;
 	}
@@ -98,14 +98,14 @@ public class KalenderItemProvider
 	}
 
 	/**
-	 * This returns Kalender.gif.
+	 * This returns Verwaltungssystem.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Kalender"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Verwaltungssystem"));
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class KalenderItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Kalender_type");
+		return getString("_UI_Verwaltungssystem_type");
 	}
 
 
@@ -131,10 +131,10 @@ public class KalenderItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Kalender.class)) {
-			case TerminplanerPackage.KALENDER__PROJEKTE:
-			case TerminplanerPackage.KALENDER__TERMINE:
-			case TerminplanerPackage.KALENDER__NUTZER:
+		switch (notification.getFeatureID(Verwaltungssystem.class)) {
+			case TerminplanerPackage.VERWALTUNGSSYSTEM__PROJEKTE:
+			case TerminplanerPackage.VERWALTUNGSSYSTEM__TERMINE:
+			case TerminplanerPackage.VERWALTUNGSSYSTEM__NUTZER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -154,17 +154,17 @@ public class KalenderItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(TerminplanerPackage.Literals.KALENDER__PROJEKTE,
+				(TerminplanerPackage.Literals.VERWALTUNGSSYSTEM__PROJEKTE,
 				 TerminplanerFactory.eINSTANCE.createProjekt()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(TerminplanerPackage.Literals.KALENDER__TERMINE,
+				(TerminplanerPackage.Literals.VERWALTUNGSSYSTEM__TERMINE,
 				 TerminplanerFactory.eINSTANCE.createTermin()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(TerminplanerPackage.Literals.KALENDER__NUTZER,
+				(TerminplanerPackage.Literals.VERWALTUNGSSYSTEM__NUTZER,
 				 TerminplanerFactory.eINSTANCE.createNutzer()));
 	}
 

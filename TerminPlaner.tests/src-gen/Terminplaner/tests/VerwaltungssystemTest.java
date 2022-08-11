@@ -2,8 +2,8 @@
  */
 package Terminplaner.tests;
 
-import Terminplaner.Kalender;
 import Terminplaner.TerminplanerFactory;
+import Terminplaner.Verwaltungssystem;
 
 import junit.framework.TestCase;
 
@@ -11,19 +11,19 @@ import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Kalender</b></em>'.
+ * A test case for the model object '<em><b>Verwaltungssystem</b></em>'.
  * <!-- end-user-doc -->
  * @generated
  */
-public class KalenderTest extends TestCase {
+public class VerwaltungssystemTest extends TestCase {
 
 	/**
-	 * The fixture for this Kalender test case.
+	 * The fixture for this Verwaltungssystem test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Kalender fixture = null;
+	protected Verwaltungssystem fixture = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -31,36 +31,36 @@ public class KalenderTest extends TestCase {
 	 * @generated
 	 */
 	public static void main(String[] args) {
-		TestRunner.run(KalenderTest.class);
+		TestRunner.run(VerwaltungssystemTest.class);
 	}
 
 	/**
-	 * Constructs a new Kalender test case with the given name.
+	 * Constructs a new Verwaltungssystem test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public KalenderTest(String name) {
+	public VerwaltungssystemTest(String name) {
 		super(name);
 	}
 
 	/**
-	 * Sets the fixture for this Kalender test case.
+	 * Sets the fixture for this Verwaltungssystem test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void setFixture(Kalender fixture) {
+	protected void setFixture(Verwaltungssystem fixture) {
 		this.fixture = fixture;
 	}
 
 	/**
-	 * Returns the fixture for this Kalender test case.
+	 * Returns the fixture for this Verwaltungssystem test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Kalender getFixture() {
+	protected Verwaltungssystem getFixture() {
 		return fixture;
 	}
 
@@ -72,7 +72,7 @@ public class KalenderTest extends TestCase {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(TerminplanerFactory.eINSTANCE.createKalender());
+		setFixture(TerminplanerFactory.eINSTANCE.createVerwaltungssystem());
 	}
 
 	/**
@@ -86,4 +86,4 @@ public class KalenderTest extends TestCase {
 		setFixture(null);
 	}
 
-} //KalenderTest
+} //VerwaltungssystemTest

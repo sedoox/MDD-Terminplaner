@@ -63,6 +63,7 @@ public class ProjektItemProvider
 			addNamePropertyDescriptor(object);
 			addBeschreibungPropertyDescriptor(object);
 			addNutzerPropertyDescriptor(object);
+			addTerminePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -125,6 +126,28 @@ public class ProjektItemProvider
 				 getString("_UI_Projekt_nutzer_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Projekt_nutzer_feature", "_UI_Projekt_type"),
 				 TerminplanerPackage.Literals.PROJEKT__NUTZER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Termine feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTerminePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Projekt_termine_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Projekt_termine_feature", "_UI_Projekt_type"),
+				 TerminplanerPackage.Literals.PROJEKT__TERMINE,
 				 true,
 				 false,
 				 true,

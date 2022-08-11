@@ -80,8 +80,8 @@ public class TerminplanerAdapterFactory extends AdapterFactoryImpl {
 				return createProjektAdapter();
 			}
 			@Override
-			public Adapter caseKalender(Kalender object) {
-				return createKalenderAdapter();
+			public Adapter caseVerwaltungssystem(Verwaltungssystem object) {
+				return createVerwaltungssystemAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -146,16 +146,16 @@ public class TerminplanerAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link Terminplaner.Kalender <em>Kalender</em>}'.
+	 * Creates a new adapter for an object of class '{@link Terminplaner.Verwaltungssystem <em>Verwaltungssystem</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see Terminplaner.Kalender
+	 * @see Terminplaner.Verwaltungssystem
 	 * @generated
 	 */
-	public Adapter createKalenderAdapter() {
+	public Adapter createVerwaltungssystemAdapter() {
 		return null;
 	}
 

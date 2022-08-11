@@ -33,8 +33,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link Terminplaner.impl.TerminImpl#getName <em>Name</em>}</li>
  *   <li>{@link Terminplaner.impl.TerminImpl#getBeschreibung <em>Beschreibung</em>}</li>
- *   <li>{@link Terminplaner.impl.TerminImpl#getDatum <em>Datum</em>}</li>
+ *   <li>{@link Terminplaner.impl.TerminImpl#getStartDatum <em>Start Datum</em>}</li>
  *   <li>{@link Terminplaner.impl.TerminImpl#getNutzer <em>Nutzer</em>}</li>
+ *   <li>{@link Terminplaner.impl.TerminImpl#getEndDatum <em>End Datum</em>}</li>
+ *   <li>{@link Terminplaner.impl.TerminImpl#getOrt <em>Ort</em>}</li>
  * </ul>
  *
  * @generated
@@ -81,24 +83,24 @@ public class TerminImpl extends MinimalEObjectImpl.Container implements Termin {
 	protected String beschreibung = BESCHREIBUNG_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDatum() <em>Datum</em>}' attribute.
+	 * The default value of the '{@link #getStartDatum() <em>Start Datum</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDatum()
+	 * @see #getStartDatum()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Date DATUM_EDEFAULT = null;
+	protected static final Date START_DATUM_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDatum() <em>Datum</em>}' attribute.
+	 * The cached value of the '{@link #getStartDatum() <em>Start Datum</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDatum()
+	 * @see #getStartDatum()
 	 * @generated
 	 * @ordered
 	 */
-	protected Date datum = DATUM_EDEFAULT;
+	protected Date startDatum = START_DATUM_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getNutzer() <em>Nutzer</em>}' reference list.
@@ -109,6 +111,46 @@ public class TerminImpl extends MinimalEObjectImpl.Container implements Termin {
 	 * @ordered
 	 */
 	protected EList<Nutzer> nutzer;
+
+	/**
+	 * The default value of the '{@link #getEndDatum() <em>End Datum</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEndDatum()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date END_DATUM_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getEndDatum() <em>End Datum</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEndDatum()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date endDatum = END_DATUM_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getOrt() <em>Ort</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOrt()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ORT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getOrt() <em>Ort</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOrt()
+	 * @generated
+	 * @ordered
+	 */
+	protected String ort = ORT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -176,8 +218,8 @@ public class TerminImpl extends MinimalEObjectImpl.Container implements Termin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Date getDatum() {
-		return datum;
+	public Date getStartDatum() {
+		return startDatum;
 	}
 
 	/**
@@ -185,11 +227,11 @@ public class TerminImpl extends MinimalEObjectImpl.Container implements Termin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDatum(Date newDatum) {
-		Date oldDatum = datum;
-		datum = newDatum;
+	public void setStartDatum(Date newStartDatum) {
+		Date oldStartDatum = startDatum;
+		startDatum = newStartDatum;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TerminplanerPackage.TERMIN__DATUM, oldDatum, datum));
+			eNotify(new ENotificationImpl(this, Notification.SET, TerminplanerPackage.TERMIN__START_DATUM, oldStartDatum, startDatum));
 	}
 
 	/**
@@ -202,6 +244,48 @@ public class TerminImpl extends MinimalEObjectImpl.Container implements Termin {
 			nutzer = new EObjectWithInverseResolvingEList.ManyInverse<Nutzer>(Nutzer.class, this, TerminplanerPackage.TERMIN__NUTZER, TerminplanerPackage.NUTZER__TERMINE);
 		}
 		return nutzer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date getEndDatum() {
+		return endDatum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEndDatum(Date newEndDatum) {
+		Date oldEndDatum = endDatum;
+		endDatum = newEndDatum;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TerminplanerPackage.TERMIN__END_DATUM, oldEndDatum, endDatum));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getOrt() {
+		return ort;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOrt(String newOrt) {
+		String oldOrt = ort;
+		ort = newOrt;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TerminplanerPackage.TERMIN__ORT, oldOrt, ort));
 	}
 
 	/**
@@ -245,10 +329,14 @@ public class TerminImpl extends MinimalEObjectImpl.Container implements Termin {
 				return getName();
 			case TerminplanerPackage.TERMIN__BESCHREIBUNG:
 				return getBeschreibung();
-			case TerminplanerPackage.TERMIN__DATUM:
-				return getDatum();
+			case TerminplanerPackage.TERMIN__START_DATUM:
+				return getStartDatum();
 			case TerminplanerPackage.TERMIN__NUTZER:
 				return getNutzer();
+			case TerminplanerPackage.TERMIN__END_DATUM:
+				return getEndDatum();
+			case TerminplanerPackage.TERMIN__ORT:
+				return getOrt();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -268,12 +356,18 @@ public class TerminImpl extends MinimalEObjectImpl.Container implements Termin {
 			case TerminplanerPackage.TERMIN__BESCHREIBUNG:
 				setBeschreibung((String)newValue);
 				return;
-			case TerminplanerPackage.TERMIN__DATUM:
-				setDatum((Date)newValue);
+			case TerminplanerPackage.TERMIN__START_DATUM:
+				setStartDatum((Date)newValue);
 				return;
 			case TerminplanerPackage.TERMIN__NUTZER:
 				getNutzer().clear();
 				getNutzer().addAll((Collection<? extends Nutzer>)newValue);
+				return;
+			case TerminplanerPackage.TERMIN__END_DATUM:
+				setEndDatum((Date)newValue);
+				return;
+			case TerminplanerPackage.TERMIN__ORT:
+				setOrt((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -293,11 +387,17 @@ public class TerminImpl extends MinimalEObjectImpl.Container implements Termin {
 			case TerminplanerPackage.TERMIN__BESCHREIBUNG:
 				setBeschreibung(BESCHREIBUNG_EDEFAULT);
 				return;
-			case TerminplanerPackage.TERMIN__DATUM:
-				setDatum(DATUM_EDEFAULT);
+			case TerminplanerPackage.TERMIN__START_DATUM:
+				setStartDatum(START_DATUM_EDEFAULT);
 				return;
 			case TerminplanerPackage.TERMIN__NUTZER:
 				getNutzer().clear();
+				return;
+			case TerminplanerPackage.TERMIN__END_DATUM:
+				setEndDatum(END_DATUM_EDEFAULT);
+				return;
+			case TerminplanerPackage.TERMIN__ORT:
+				setOrt(ORT_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -315,10 +415,14 @@ public class TerminImpl extends MinimalEObjectImpl.Container implements Termin {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case TerminplanerPackage.TERMIN__BESCHREIBUNG:
 				return BESCHREIBUNG_EDEFAULT == null ? beschreibung != null : !BESCHREIBUNG_EDEFAULT.equals(beschreibung);
-			case TerminplanerPackage.TERMIN__DATUM:
-				return DATUM_EDEFAULT == null ? datum != null : !DATUM_EDEFAULT.equals(datum);
+			case TerminplanerPackage.TERMIN__START_DATUM:
+				return START_DATUM_EDEFAULT == null ? startDatum != null : !START_DATUM_EDEFAULT.equals(startDatum);
 			case TerminplanerPackage.TERMIN__NUTZER:
 				return nutzer != null && !nutzer.isEmpty();
+			case TerminplanerPackage.TERMIN__END_DATUM:
+				return END_DATUM_EDEFAULT == null ? endDatum != null : !END_DATUM_EDEFAULT.equals(endDatum);
+			case TerminplanerPackage.TERMIN__ORT:
+				return ORT_EDEFAULT == null ? ort != null : !ORT_EDEFAULT.equals(ort);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -330,17 +434,7 @@ public class TerminImpl extends MinimalEObjectImpl.Container implements Termin {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", beschreibung: ");
-		result.append(beschreibung);
-		result.append(", datum: ");
-		result.append(datum);
-		result.append(')');
-		return result.toString();
+		return name;
 	}
 
 } //TerminImpl

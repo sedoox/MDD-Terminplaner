@@ -19,8 +19,10 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link Terminplaner.Termin#getName <em>Name</em>}</li>
  *   <li>{@link Terminplaner.Termin#getBeschreibung <em>Beschreibung</em>}</li>
- *   <li>{@link Terminplaner.Termin#getDatum <em>Datum</em>}</li>
+ *   <li>{@link Terminplaner.Termin#getStartDatum <em>Start Datum</em>}</li>
  *   <li>{@link Terminplaner.Termin#getNutzer <em>Nutzer</em>}</li>
+ *   <li>{@link Terminplaner.Termin#getEndDatum <em>End Datum</em>}</li>
+ *   <li>{@link Terminplaner.Termin#getOrt <em>Ort</em>}</li>
  * </ul>
  *
  * @see Terminplaner.TerminplanerPackage#getTermin()
@@ -73,26 +75,26 @@ public interface Termin extends EObject {
 	void setBeschreibung(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Datum</b></em>' attribute.
+	 * Returns the value of the '<em><b>Start Datum</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Datum</em>' attribute.
-	 * @see #setDatum(Date)
-	 * @see Terminplaner.TerminplanerPackage#getTermin_Datum()
+	 * @return the value of the '<em>Start Datum</em>' attribute.
+	 * @see #setStartDatum(Date)
+	 * @see Terminplaner.TerminplanerPackage#getTermin_StartDatum()
 	 * @model
 	 * @generated
 	 */
-	Date getDatum();
+	Date getStartDatum();
 
 	/**
-	 * Sets the value of the '{@link Terminplaner.Termin#getDatum <em>Datum</em>}' attribute.
+	 * Sets the value of the '{@link Terminplaner.Termin#getStartDatum <em>Start Datum</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Datum</em>' attribute.
-	 * @see #getDatum()
+	 * @param value the new value of the '<em>Start Datum</em>' attribute.
+	 * @see #getStartDatum()
 	 * @generated
 	 */
-	void setDatum(Date value);
+	void setStartDatum(Date value);
 
 	/**
 	 * Returns the value of the '<em><b>Nutzer</b></em>' reference list.
@@ -107,5 +109,49 @@ public interface Termin extends EObject {
 	 * @generated
 	 */
 	EList<Nutzer> getNutzer();
+
+	/**
+	 * Returns the value of the '<em><b>End Datum</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>End Datum</em>' attribute.
+	 * @see #setEndDatum(Date)
+	 * @see Terminplaner.TerminplanerPackage#getTermin_EndDatum()
+	 * @model
+	 * @generated
+	 */
+	Date getEndDatum();
+
+	/**
+	 * Sets the value of the '{@link Terminplaner.Termin#getEndDatum <em>End Datum</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>End Datum</em>' attribute.
+	 * @see #getEndDatum()
+	 * @generated
+	 */
+	void setEndDatum(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>Ort</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ort</em>' attribute.
+	 * @see #setOrt(String)
+	 * @see Terminplaner.TerminplanerPackage#getTermin_Ort()
+	 * @model
+	 * @generated
+	 */
+	String getOrt();
+
+	/**
+	 * Sets the value of the '{@link Terminplaner.Termin#getOrt <em>Ort</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Ort</em>' attribute.
+	 * @see #getOrt()
+	 * @generated
+	 */
+	void setOrt(String value);
 
 } // Termin

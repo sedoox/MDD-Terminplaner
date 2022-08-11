@@ -10,9 +10,15 @@ import org.eclipse.core.runtime.NullProgressMonitor
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.resource.Resource
-import Terminplaner.Kalender
 import Terminplaner.Nutzer
 import Terminplaner.Projekt
+import Terminplaner.Termin
+import Terminplaner.Verwaltungssystem
+import org.eclipse.emf.common.util.EList
+import java.util.Map
+import java.util.HashMap
+import java.util.List
+import java.util.ArrayList
 
 class SimpleGenerator {
 	
@@ -66,24 +72,26 @@ class SimpleGenerator {
 			}
 			
 			
-			for (Kalender k : resourceEcore.allContents.toIterable.filter(typeof(Kalender))) {
+			for (Verwaltungssystem vs : resourceEcore.allContents.toIterable.filter(typeof(Verwaltungssystem))
+			) {
 				progressMonitor.subTask("Generating User");
-				for (Nutzer n : k.nutzer) {
+				for (Nutzer n : vs.nutzer) {
 					var content = compileUser(n)
 					createFile(
 						userFolder,
-						'''«n.toString».html''',
+						'''«n.fullName.replaceAll(" ", "")».html''',
 						false,
 						content,
 						progressMonitor
 					);	
+					n.termine.sort
 				}
 				progressMonitor.subTask("Generating Projects");
-				for (Projekt p : k.projekte) {
+				for (Projekt p : vs.projekte) {
 					var content = compileProjects(p)
 					createFile(
 						projectsFolder,
-						'''«p.toString».html''',
+						'''«p.name.replaceAll(" ", "")».html''',
 						false,
 						content,
 						progressMonitor
@@ -108,12 +116,13 @@ class SimpleGenerator {
 		    <meta charset="UTF-8" />
 		    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		    <link rel="stylesheet" href="benutzer.css" />
-		    <title>«n.toString»</title>
+		    <link rel="stylesheet" href="../css/benutzer.css" />
+		    <link rel="stylesheet" href="../css/kalender.css" />
+		    <title>«n.fullName»</title>
 		  </head>
 		  <body>
 		    <div class="top">
-		      <div class="name"><b>«n.toString»</b></div>
+		      <div class="name"><b>«n.fullName»</b></div>
 		    </div>
 		    <div class="bottom">
 		      <div class="projekte">
@@ -297,7 +306,8 @@ class SimpleGenerator {
 		    <meta charset="UTF-8" />
 		    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		    <link rel="stylesheet" href="projekt.css" />
+		    <link rel="stylesheet" href="../css/projekt.css" />
+		    <link rel="stylesheet" href="../css/kalender.css" />
 		    <title>«p.name»</title>
 		  </head>
 		  <body>
@@ -313,7 +323,7 @@ class SimpleGenerator {
 		        <b>Teilnehmer:</b>
 		        <div class="liste">
 		        	«FOR n : p.nutzer»
-		        	«n.toString»
+		        	«n.fullName»
 		        	«ENDFOR»
 		        </div>
 		      </div>
@@ -475,6 +485,164 @@ class SimpleGenerator {
 		
 		'''
 	}
+	
+	def compileCalendar(EList<Termin> list) {
+		'''
+	    <div class="month">
+	      <ul>
+	        <li class="prev">&#10094;</li>
+	        <li class="next">&#10095;</li>
+	        <li>
+	          Jahr<br /><span style="font-size: 18px">Monat</span><br /><span style="font-size: 12px">Kalenderwoche</span>
+	        </li>
+	      </ul>
+	    </div>
+	    <div class="weekdays">
+	      <p>Zeit</p>
+	      <p>Mo</p>
+	      <p>Di</p>
+	      <p>Mi</p>
+	      <p>Do</p>
+	      <p>Fr</p>
+	      <p>Sa</p>
+	      <p>So</p>
+	    </div>
+	    <div class="times">
+	    «FOR t : list.sortBy[it.startDatum.hours]»
+	    <div class="row">
+          <p>8:00 - 9:00</p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+      	</div>
+	    «ENDFOR»
+	      <div class="row">
+	        <p>8:00 - 9:00</p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	      </div>
+	      <div class="row">
+	        <p>9:00 - 10:00</p>
+	        <p class="meeting">Termin 1</p>
+	        <p></p>
+	        <p></p>
+	        <p class="meeting bottom"></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	      </div>
+	      <div class="row">
+	        <p>10:00 - 11:00</p>
+	        <p class="meeting">&nbsp;</p>
+	        <p></p>
+	        <p></p>
+	        <p class="meeting">&nbsp;</p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	      </div>
+	      <div class="row">
+	        <p>11:00 - 12:00</p>
+	        <p class="meeting top"></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	      </div>
+	      <div class="row">
+	        <p>12:00 - 13:00</p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	      </div>
+	      <div class="row">
+	        <p>13:00 - 14:00</p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	      </div>
+	      <div class="row">
+	        <p>14:00 - 15:00</p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	      </div>
+	      <div class="row">
+	        <p>15:00 - 16:00</p>
+	        <p>Termin 3</p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	      </div>
+	      <div class="row">
+	        <p>16:00 - 17:00</p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	      </div>
+	      <div class="row">
+	        <p>17:00 - 18:00</p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	      </div>
+	      <div class="row">
+	        <p>18:00 - 19:00</p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p>Termin 4</p>
+	      </div>
+	      <div class="row">
+	        <p>19:00 - 20:00</p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	        <p></p>
+	      </div>
+	    </div>
+		'''
+	}
 
 	def isString(EAttribute a) {
 		a.EAttributeType.classifierID == EcorePackage.ESTRING
@@ -508,5 +676,24 @@ class SimpleGenerator {
 			iFile.create(source, true, null);
 		}
 	}
-
+	
+	def String getFullName(Nutzer n) {
+		'''«n.vorname.toLowerCase.toFirstUpper» «n.nachname.toLowerCase.toFirstUpper»'''
+	}
+	
+	def sort(EList<Termin> list) {
+		if(list.size == 0) {
+			return
+		}
+		var week = new ArrayList
+		for (termin : list) {
+			//TODO tagesübergreifend
+			var map = new HashMap();
+			for (i : (termin.startDatum.hours..termin.endDatum.hours)) {
+				map.put(i, termin)
+			}
+			week.add(map)
+		}
+		println(week)
+	}
 }

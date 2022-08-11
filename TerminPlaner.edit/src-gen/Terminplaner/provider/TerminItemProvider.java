@@ -62,8 +62,10 @@ public class TerminItemProvider
 
 			addNamePropertyDescriptor(object);
 			addBeschreibungPropertyDescriptor(object);
-			addDatumPropertyDescriptor(object);
+			addStartDatumPropertyDescriptor(object);
 			addNutzerPropertyDescriptor(object);
+			addEndDatumPropertyDescriptor(object);
+			addOrtPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -113,19 +115,19 @@ public class TerminItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Datum feature.
+	 * This adds a property descriptor for the Start Datum feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDatumPropertyDescriptor(Object object) {
+	protected void addStartDatumPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Termin_datum_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Termin_datum_feature", "_UI_Termin_type"),
-				 TerminplanerPackage.Literals.TERMIN__DATUM,
+				 getString("_UI_Termin_startDatum_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Termin_startDatum_feature", "_UI_Termin_type"),
+				 TerminplanerPackage.Literals.TERMIN__START_DATUM,
 				 true,
 				 false,
 				 false,
@@ -152,6 +154,50 @@ public class TerminItemProvider
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the End Datum feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEndDatumPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Termin_endDatum_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Termin_endDatum_feature", "_UI_Termin_type"),
+				 TerminplanerPackage.Literals.TERMIN__END_DATUM,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Ort feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOrtPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Termin_ort_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Termin_ort_feature", "_UI_Termin_type"),
+				 TerminplanerPackage.Literals.TERMIN__ORT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -196,7 +242,9 @@ public class TerminItemProvider
 		switch (notification.getFeatureID(Termin.class)) {
 			case TerminplanerPackage.TERMIN__NAME:
 			case TerminplanerPackage.TERMIN__BESCHREIBUNG:
-			case TerminplanerPackage.TERMIN__DATUM:
+			case TerminplanerPackage.TERMIN__START_DATUM:
+			case TerminplanerPackage.TERMIN__END_DATUM:
+			case TerminplanerPackage.TERMIN__ORT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

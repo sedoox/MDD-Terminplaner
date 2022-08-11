@@ -2,13 +2,13 @@
  */
 package Terminplaner.impl;
 
-import Terminplaner.Kalender;
 import Terminplaner.Nutzer;
 import Terminplaner.Projekt;
 import Terminplaner.Termin;
 import Terminplaner.TerminplanerFactory;
 import Terminplaner.TerminplanerPackage;
 
+import Terminplaner.Verwaltungssystem;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -49,7 +49,7 @@ public class TerminplanerPackageImpl extends EPackageImpl implements Terminplane
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass kalenderEClass = null;
+	private EClass verwaltungssystemEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -144,7 +144,7 @@ public class TerminplanerPackageImpl extends EPackageImpl implements Terminplane
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTermin_Datum() {
+	public EAttribute getTermin_StartDatum() {
 		return (EAttribute)terminEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -155,6 +155,24 @@ public class TerminplanerPackageImpl extends EPackageImpl implements Terminplane
 	 */
 	public EReference getTermin_Nutzer() {
 		return (EReference)terminEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTermin_EndDatum() {
+		return (EAttribute)terminEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTermin_Ort() {
+		return (EAttribute)terminEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -243,8 +261,8 @@ public class TerminplanerPackageImpl extends EPackageImpl implements Terminplane
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getKalender() {
-		return kalenderEClass;
+	public EReference getProjekt_Termine() {
+		return (EReference)projektEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -252,8 +270,8 @@ public class TerminplanerPackageImpl extends EPackageImpl implements Terminplane
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getKalender_Projekte() {
-		return (EReference)kalenderEClass.getEStructuralFeatures().get(0);
+	public EClass getVerwaltungssystem() {
+		return verwaltungssystemEClass;
 	}
 
 	/**
@@ -261,8 +279,8 @@ public class TerminplanerPackageImpl extends EPackageImpl implements Terminplane
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getKalender_Termine() {
-		return (EReference)kalenderEClass.getEStructuralFeatures().get(1);
+	public EReference getVerwaltungssystem_Projekte() {
+		return (EReference)verwaltungssystemEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -270,8 +288,17 @@ public class TerminplanerPackageImpl extends EPackageImpl implements Terminplane
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getKalender_Nutzer() {
-		return (EReference)kalenderEClass.getEStructuralFeatures().get(2);
+	public EReference getVerwaltungssystem_Termine() {
+		return (EReference)verwaltungssystemEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVerwaltungssystem_Nutzer() {
+		return (EReference)verwaltungssystemEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -305,8 +332,10 @@ public class TerminplanerPackageImpl extends EPackageImpl implements Terminplane
 		terminEClass = createEClass(TERMIN);
 		createEAttribute(terminEClass, TERMIN__NAME);
 		createEAttribute(terminEClass, TERMIN__BESCHREIBUNG);
-		createEAttribute(terminEClass, TERMIN__DATUM);
+		createEAttribute(terminEClass, TERMIN__START_DATUM);
 		createEReference(terminEClass, TERMIN__NUTZER);
+		createEAttribute(terminEClass, TERMIN__END_DATUM);
+		createEAttribute(terminEClass, TERMIN__ORT);
 
 		nutzerEClass = createEClass(NUTZER);
 		createEAttribute(nutzerEClass, NUTZER__VORNAME);
@@ -318,11 +347,12 @@ public class TerminplanerPackageImpl extends EPackageImpl implements Terminplane
 		createEAttribute(projektEClass, PROJEKT__NAME);
 		createEAttribute(projektEClass, PROJEKT__BESCHREIBUNG);
 		createEReference(projektEClass, PROJEKT__NUTZER);
+		createEReference(projektEClass, PROJEKT__TERMINE);
 
-		kalenderEClass = createEClass(KALENDER);
-		createEReference(kalenderEClass, KALENDER__PROJEKTE);
-		createEReference(kalenderEClass, KALENDER__TERMINE);
-		createEReference(kalenderEClass, KALENDER__NUTZER);
+		verwaltungssystemEClass = createEClass(VERWALTUNGSSYSTEM);
+		createEReference(verwaltungssystemEClass, VERWALTUNGSSYSTEM__PROJEKTE);
+		createEReference(verwaltungssystemEClass, VERWALTUNGSSYSTEM__TERMINE);
+		createEReference(verwaltungssystemEClass, VERWALTUNGSSYSTEM__NUTZER);
 	}
 
 	/**
@@ -358,8 +388,10 @@ public class TerminplanerPackageImpl extends EPackageImpl implements Terminplane
 		initEClass(terminEClass, Termin.class, "Termin", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTermin_Name(), ecorePackage.getEString(), "name", null, 0, 1, Termin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTermin_Beschreibung(), ecorePackage.getEString(), "beschreibung", null, 0, 1, Termin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTermin_Datum(), ecorePackage.getEDate(), "datum", null, 0, 1, Termin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTermin_StartDatum(), ecorePackage.getEDate(), "startDatum", null, 0, 1, Termin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTermin_Nutzer(), this.getNutzer(), this.getNutzer_Termine(), "nutzer", null, 0, -1, Termin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTermin_EndDatum(), ecorePackage.getEDate(), "endDatum", null, 0, 1, Termin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTermin_Ort(), ecorePackage.getEString(), "ort", null, 0, 1, Termin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nutzerEClass, Nutzer.class, "Nutzer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNutzer_Vorname(), ecorePackage.getEString(), "vorname", null, 0, 1, Nutzer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -371,11 +403,12 @@ public class TerminplanerPackageImpl extends EPackageImpl implements Terminplane
 		initEAttribute(getProjekt_Name(), ecorePackage.getEString(), "name", null, 0, 1, Projekt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProjekt_Beschreibung(), ecorePackage.getEString(), "beschreibung", null, 0, 1, Projekt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjekt_Nutzer(), this.getNutzer(), this.getNutzer_Projekte(), "nutzer", null, 0, -1, Projekt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjekt_Termine(), this.getTermin(), null, "termine", null, 0, 1, Projekt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(kalenderEClass, Kalender.class, "Kalender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getKalender_Projekte(), this.getProjekt(), null, "projekte", null, 0, -1, Kalender.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getKalender_Termine(), this.getTermin(), null, "termine", null, 0, -1, Kalender.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getKalender_Nutzer(), this.getNutzer(), null, "nutzer", null, 0, -1, Kalender.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(verwaltungssystemEClass, Verwaltungssystem.class, "Verwaltungssystem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVerwaltungssystem_Projekte(), this.getProjekt(), null, "projekte", null, 0, -1, Verwaltungssystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVerwaltungssystem_Termine(), this.getTermin(), null, "termine", null, 0, -1, Verwaltungssystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVerwaltungssystem_Nutzer(), this.getNutzer(), null, "nutzer", null, 0, -1, Verwaltungssystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

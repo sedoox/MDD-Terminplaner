@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Terminplaner.Projekt#getName <em>Name</em>}</li>
  *   <li>{@link Terminplaner.Projekt#getBeschreibung <em>Beschreibung</em>}</li>
  *   <li>{@link Terminplaner.Projekt#getNutzer <em>Nutzer</em>}</li>
+ *   <li>{@link Terminplaner.Projekt#getTermine <em>Termine</em>}</li>
  * </ul>
  *
  * @see Terminplaner.TerminplanerPackage#getProjekt()
@@ -82,5 +83,27 @@ public interface Projekt extends EObject {
 	 * @generated
 	 */
 	EList<Nutzer> getNutzer();
+
+	/**
+	 * Returns the value of the '<em><b>Termine</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Termine</em>' reference.
+	 * @see #setTermine(Termin)
+	 * @see Terminplaner.TerminplanerPackage#getProjekt_Termine()
+	 * @model
+	 * @generated
+	 */
+	Termin getTermine();
+
+	/**
+	 * Sets the value of the '{@link Terminplaner.Projekt#getTermine <em>Termine</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Termine</em>' reference.
+	 * @see #getTermine()
+	 * @generated
+	 */
+	void setTermine(Termin value);
 
 } // Projekt

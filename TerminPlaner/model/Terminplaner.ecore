@@ -4,9 +4,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="Termin">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="beschreibung" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="datum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDatum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nutzer" upperBound="-1"
         eType="#//Nutzer" eOpposite="#//Nutzer/termine"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="endDatum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ort" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Nutzer">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vorname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -21,8 +23,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="beschreibung" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nutzer" upperBound="-1"
         eType="#//Nutzer" eOpposite="#//Nutzer/projekte"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="termine" eType="#//Termin"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Kalender">
+  <eClassifiers xsi:type="ecore:EClass" name="Verwaltungssystem">
     <eStructuralFeatures xsi:type="ecore:EReference" name="projekte" upperBound="-1"
         eType="#//Projekt" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="termine" upperBound="-1"

@@ -312,15 +312,19 @@ public class NutzerImpl extends MinimalEObjectImpl.Container implements Nutzer {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * NOT @generated
+	 * @generated
 	 */
 	@Override
 	public String toString() {
-		char[] vornameArr = vorname.toCharArray();
-		vornameArr[0] = Character.toUpperCase(vornameArr[0]);
-		char[] nachnameArr = nachname.toCharArray();
-		nachnameArr[0] = Character.toUpperCase(nachnameArr[0]);
-		return new String(vornameArr) + " " + new String(nachnameArr);
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (vorname: ");
+		result.append(vorname);
+		result.append(", nachname: ");
+		result.append(nachname);
+		result.append(')');
+		return result.toString();
 	}
 
 } //NutzerImpl

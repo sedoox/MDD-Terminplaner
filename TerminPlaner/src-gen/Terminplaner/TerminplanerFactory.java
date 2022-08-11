@@ -49,13 +49,13 @@ public interface TerminplanerFactory extends EFactory {
 	Projekt createProjekt();
 
 	/**
-	 * Returns a new object of class '<em>Kalender</em>'.
+	 * Returns a new object of class '<em>Verwaltungssystem</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Kalender</em>'.
+	 * @return a new object of class '<em>Verwaltungssystem</em>'.
 	 * @generated
 	 */
-	Kalender createKalender();
+	Verwaltungssystem createVerwaltungssystem();
 
 	/**
 	 * Returns the package supported by this factory.
