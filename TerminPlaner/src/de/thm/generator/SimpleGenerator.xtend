@@ -19,6 +19,8 @@ import java.util.Map
 import java.util.HashMap
 import java.util.List
 import java.util.ArrayList
+import java.util.Set
+import java.util.Map.Entry
 
 class SimpleGenerator {
 	
@@ -83,8 +85,7 @@ class SimpleGenerator {
 						false,
 						content,
 						progressMonitor
-					);	
-					n.termine.sort
+					);
 				}
 				progressMonitor.subTask("Generating Projects");
 				for (Projekt p : vs.projekte) {
@@ -134,165 +135,8 @@ class SimpleGenerator {
 			        «ENDFOR»
 		        </div>
 		      </div>
-		
-		      <div class="month">
-		        <ul>
-		          <li class="prev">&#10094;</li>
-		          <li class="next">&#10095;</li>
-		          <li>
-		            Jahr<br /><span style="font-size: 18px">Monat</span><br /><span
-		              style="font-size: 12px"
-		              >Kalenderwoche</span
-		            >
-		          </li>
-		        </ul>
-		      </div>
-		      <ul class="weekdays">
-		        <li>Zeit</li>
-		        <li>Mo</li>
-		        <li>Di</li>
-		        <li>Mi</li>
-		        <li>Do</li>
-		        <li>Fr</li>
-		        <li>Sa</li>
-		        <li>So</li>
-		      </ul>
-		      <ul class="times">
-		        <div class="time">
-		          <div class="row">
-		            <li>8:00 - 9:00</li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		          </div>
-		          <hr />
-		          <div class="row">
-		            <li>9:00 - 10:00</li>
-		            <li class="meeting">Termin 1</li>
-		            <li></li>
-		            <li></li>
-		            <li>Termin 2</li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		          </div>
-		          <hr />
-		          <div class="row">
-		            <li>10:00 - 11:00</li>
-		            <li class="meeting">s</li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		          </div>
-		          <hr />
-		          <div class="row">
-		            <li>11:00 - 12:00</li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		          </div>
-		          <hr />
-		          <div class="row">
-		            <li>12:00 - 13:00</li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		          </div>
-		          <hr />
-		          <div class="row">
-		            <li>13:00 - 14:00</li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		          </div>
-		          <hr />
-		          <div class="row">
-		            <li>14:00 - 15:00</li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		          </div>
-		          <hr />
-		          <div class="row">
-		            <li>15:00 - 16:00</li>
-		            <li>Termin 3</li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		          </div>
-		          <hr />
-		          <div class="row">
-		            <li>16:00 - 17:00</li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		          </div>
-		          <hr />
-		          <div class="row">
-		            <li>17:00 - 18:00</li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		          </div>
-		          <hr />
-		          <div class="row">
-		            <li>18:00 - 19:00</li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li>Termin 4</li>
-		          </div>
-		          <hr />
-		          <div class="row">
-		            <li>19:00 - 20:00</li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		            <li></li>
-		          </div>
-		        </div>
-		      </ul>
-		    </div>
+		      «compileCalendar(getTermine(n.termine))»
+	        </div>
 		  </body>
 		</html>
 		'''
@@ -486,7 +330,7 @@ class SimpleGenerator {
 		'''
 	}
 	
-	def compileCalendar(EList<Termin> list) {
+	def compileCalendar(HashMap<Integer, List<Integer>> map) {
 		'''
 	    <div class="month">
 	      <ul>
@@ -508,139 +352,18 @@ class SimpleGenerator {
 	      <p>So</p>
 	    </div>
 	    <div class="times">
-	    «FOR t : list.sortBy[it.startDatum.hours]»
+	    «FOR time : (8..19)»
 	    <div class="row">
-          <p>8:00 - 9:00</p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
-      	</div>
-	    «ENDFOR»
-	      <div class="row">
-	        <p>8:00 - 9:00</p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	      </div>
-	      <div class="row">
-	        <p>9:00 - 10:00</p>
-	        <p class="meeting">Termin 1</p>
-	        <p></p>
-	        <p></p>
-	        <p class="meeting bottom"></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	      </div>
-	      <div class="row">
-	        <p>10:00 - 11:00</p>
-	        <p class="meeting">&nbsp;</p>
-	        <p></p>
-	        <p></p>
-	        <p class="meeting">&nbsp;</p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	      </div>
-	      <div class="row">
-	        <p>11:00 - 12:00</p>
-	        <p class="meeting top"></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	      </div>
-	      <div class="row">
-	        <p>12:00 - 13:00</p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	      </div>
-	      <div class="row">
-	        <p>13:00 - 14:00</p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	      </div>
-	      <div class="row">
-	        <p>14:00 - 15:00</p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	      </div>
-	      <div class="row">
-	        <p>15:00 - 16:00</p>
-	        <p>Termin 3</p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	      </div>
-	      <div class="row">
-	        <p>16:00 - 17:00</p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	      </div>
-	      <div class="row">
-	        <p>17:00 - 18:00</p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	      </div>
-	      <div class="row">
-	        <p>18:00 - 19:00</p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p>Termin 4</p>
-	      </div>
-	      <div class="row">
-	        <p>19:00 - 20:00</p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	        <p></p>
-	      </div>
+	    <p>«time»:00 - «time+1»:00</p>
+          «FOR day : (1..7)»
+	          «IF map.containsKey(time) && map.get(time).contains(day)»
+	          <p class="meeting"></p>
+	          «ELSE»
+	          <p></p>
+	          «ENDIF»
+          «ENDFOR»
 	    </div>
+	    «ENDFOR»
 		'''
 	}
 
@@ -681,19 +404,20 @@ class SimpleGenerator {
 		'''«n.vorname.toLowerCase.toFirstUpper» «n.nachname.toLowerCase.toFirstUpper»'''
 	}
 	
-	def sort(EList<Termin> list) {
+	def HashMap<Integer, List<Integer>> getTermine(EList<Termin> list) {
 		if(list.size == 0) {
-			return
+			return new HashMap
 		}
-		var week = new ArrayList
+		var week = new HashMap<Integer, List<Integer>>
 		for (termin : list) {
 			//TODO tagesübergreifend
-			var map = new HashMap();
-			for (i : (termin.startDatum.hours..termin.endDatum.hours)) {
-				map.put(i, termin)
+			for (i : (termin.startDatum.hours..<termin.endDatum.hours)) {
+				if (week.get(i).isNullOrEmpty) {
+					week.put(i, new ArrayList)
+				}
+				week.get(i).add(termin.startDatum.day)
 			}
-			week.add(map)
 		}
-		println(week)
+		return week
 	}
 }
