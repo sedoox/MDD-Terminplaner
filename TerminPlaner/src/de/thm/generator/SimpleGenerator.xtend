@@ -34,6 +34,8 @@ class SimpleGenerator {
 	 */
 	public static final String PACKAGE = "de.thm.";
 	public static final String PACKAGE_PATH = "/" + PACKAGE.replaceAll("\\.", "/");
+	public static final List<String> MEETING_COLORS = List.of("meeting-green", "meeting-blue", "meeting-orange")
+	public static final String MEETING_FILL = "meeting-fill"
 
 	def void doGenerate(Resource resourceEcore, IProject project, IProgressMonitor progressMonitor) {
 
@@ -330,7 +332,7 @@ class SimpleGenerator {
 		'''
 	}
 	
-	def compileCalendar(HashMap<Integer, List<Integer>> map) {
+	def compileCalendar(HashMap<Integer, List<Termin>> map) {
 		'''
 	    <div class="month">
 	      <ul>
@@ -354,12 +356,17 @@ class SimpleGenerator {
 	    <div class="times">
 	    «FOR time : (8..19)»
 	    <div class="row">
-	    <p>«time»:00 - «time+1»:00</p>
+	    <div class="cell">«time»:00 - «time+1»:00</div>
           «FOR day : (1..7)»
-	          «IF map.containsKey(time) && map.get(time).contains(day)»
-	          <p class="meeting"></p>
+          «var map2 = map.mapValues[map[startDatum.day]]»
+	          «IF map.containsKey(time) && map.get(time).map[startDatum.day].contains(day)»
+	          <div class="meetings">
+	          «FOR i: (0..<map2.get(time).filter[a | a == day].size)»
+                <div class="«MEETING_COLORS.get(i)»"></div>
+              «ENDFOR»
+              </div>
 	          «ELSE»
-	          <p></p>
+	          <div class="cell"></div>
 	          «ENDIF»
           «ENDFOR»
 	    </div>
@@ -404,20 +411,45 @@ class SimpleGenerator {
 		'''«n.vorname.toLowerCase.toFirstUpper» «n.nachname.toLowerCase.toFirstUpper»'''
 	}
 	
-	def HashMap<Integer, List<Integer>> getTermine(EList<Termin> list) {
+	def HashMap<Integer, List<Termin>> getTermine(EList<Termin> list) {
 		if(list.size == 0) {
 			return new HashMap
 		}
-		var week = new HashMap<Integer, List<Integer>>
+		var week = new HashMap<Integer, List<Termin>>
 		for (termin : list) {
 			//TODO tagesübergreifend
 			for (i : (termin.startDatum.hours..<termin.endDatum.hours)) {
 				if (week.get(i).isNullOrEmpty) {
 					week.put(i, new ArrayList)
 				}
-				week.get(i).add(termin.startDatum.day)
+				week.get(i).add(termin)
 			}
 		}
+		println(week)
 		return week
+	}
+	
+	def bla(EList<Termin> list) {
+		list.groupBy[startDatum.day].values.
+		if (list.) {
+			
+		}
+	}
+	
+	def void multipleTermine(HashMap<Integer, List<Termin>> map) {
+		var multipleTermine = new ArrayList<List<Integer>>
+		for (time : map.keySet) {
+			// gruppiere nach Tagen
+			var day_map = map.get(time).groupBy[startDatum.day]
+			for (day : day_map.keySet) {
+				if (day_map.get(day).size > 1) {
+					multipleTermine.add(List.of(time, day))
+				}
+			}
+		}
+		
+		for (termin : multipleTermine) {
+			
+		}
 	}
 }
