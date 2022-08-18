@@ -151,6 +151,8 @@ public class TerminImpl extends MinimalEObjectImpl.Container implements Termin {
 	 * @ordered
 	 */
 	protected String ort = ORT_EDEFAULT;
+	
+	protected int order = -1;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -286,6 +288,24 @@ public class TerminImpl extends MinimalEObjectImpl.Container implements Termin {
 		ort = newOrt;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TerminplanerPackage.TERMIN__ORT, oldOrt, ort));
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * NOT @generated NOT
+	 */
+	public void setOrder(int order) {
+		this.order= order ;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * NOT @generated NOT
+	 */
+	public int getOrder() {
+		return order;
 	}
 
 	/**
@@ -434,7 +454,21 @@ public class TerminImpl extends MinimalEObjectImpl.Container implements Termin {
 	 */
 	@Override
 	public String toString() {
-		return name;
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", beschreibung: ");
+		result.append(beschreibung);
+		result.append(", startDatum: ");
+		result.append(startDatum);
+		result.append(", endDatum: ");
+		result.append(endDatum);
+		result.append(", ort: ");
+		result.append(ort);
+		result.append(')');
+		return result.toString();
 	}
 
 } //TerminImpl

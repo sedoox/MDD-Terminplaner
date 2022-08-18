@@ -403,7 +403,7 @@ public class TerminplanerPackageImpl extends EPackageImpl implements Terminplane
 		initEAttribute(getProjekt_Name(), ecorePackage.getEString(), "name", null, 0, 1, Projekt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProjekt_Beschreibung(), ecorePackage.getEString(), "beschreibung", null, 0, 1, Projekt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjekt_Nutzer(), this.getNutzer(), this.getNutzer_Projekte(), "nutzer", null, 0, -1, Projekt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjekt_Termine(), this.getTermin(), null, "termine", null, 0, 1, Projekt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjekt_Termine(), this.getTermin(), null, "termine", null, 0, -1, Projekt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(verwaltungssystemEClass, Verwaltungssystem.class, "Verwaltungssystem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVerwaltungssystem_Projekte(), this.getProjekt(), null, "projekte", null, 0, -1, Verwaltungssystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

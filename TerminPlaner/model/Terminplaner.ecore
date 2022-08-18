@@ -23,7 +23,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="beschreibung" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nutzer" upperBound="-1"
         eType="#//Nutzer" eOpposite="#//Nutzer/projekte"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="termine" eType="#//Termin"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="termine" upperBound="-1"
+        eType="#//Termin"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Verwaltungssystem">
     <eStructuralFeatures xsi:type="ecore:EReference" name="projekte" upperBound="-1"

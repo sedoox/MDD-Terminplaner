@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -91,14 +92,14 @@ public class ProjektImpl extends MinimalEObjectImpl.Container implements Projekt
 	protected EList<Nutzer> nutzer;
 
 	/**
-	 * The cached value of the '{@link #getTermine() <em>Termine</em>}' reference.
+	 * The cached value of the '{@link #getTermine() <em>Termine</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTermine()
 	 * @generated
 	 * @ordered
 	 */
-	protected Termin termine;
+	protected EList<Termin> termine;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -178,37 +179,11 @@ public class ProjektImpl extends MinimalEObjectImpl.Container implements Projekt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Termin getTermine() {
-		if (termine != null && termine.eIsProxy()) {
-			InternalEObject oldTermine = (InternalEObject)termine;
-			termine = (Termin)eResolveProxy(oldTermine);
-			if (termine != oldTermine) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TerminplanerPackage.PROJEKT__TERMINE, oldTermine, termine));
-			}
+	public EList<Termin> getTermine() {
+		if (termine == null) {
+			termine = new EObjectResolvingEList<Termin>(Termin.class, this, TerminplanerPackage.PROJEKT__TERMINE);
 		}
 		return termine;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Termin basicGetTermine() {
-		return termine;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTermine(Termin newTermine) {
-		Termin oldTermine = termine;
-		termine = newTermine;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TerminplanerPackage.PROJEKT__TERMINE, oldTermine, termine));
 	}
 
 	/**
@@ -255,8 +230,7 @@ public class ProjektImpl extends MinimalEObjectImpl.Container implements Projekt
 			case TerminplanerPackage.PROJEKT__NUTZER:
 				return getNutzer();
 			case TerminplanerPackage.PROJEKT__TERMINE:
-				if (resolve) return getTermine();
-				return basicGetTermine();
+				return getTermine();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -281,7 +255,8 @@ public class ProjektImpl extends MinimalEObjectImpl.Container implements Projekt
 				getNutzer().addAll((Collection<? extends Nutzer>)newValue);
 				return;
 			case TerminplanerPackage.PROJEKT__TERMINE:
-				setTermine((Termin)newValue);
+				getTermine().clear();
+				getTermine().addAll((Collection<? extends Termin>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -305,7 +280,7 @@ public class ProjektImpl extends MinimalEObjectImpl.Container implements Projekt
 				getNutzer().clear();
 				return;
 			case TerminplanerPackage.PROJEKT__TERMINE:
-				setTermine((Termin)null);
+				getTermine().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -326,7 +301,7 @@ public class ProjektImpl extends MinimalEObjectImpl.Container implements Projekt
 			case TerminplanerPackage.PROJEKT__NUTZER:
 				return nutzer != null && !nutzer.isEmpty();
 			case TerminplanerPackage.PROJEKT__TERMINE:
-				return termine != null;
+				return termine != null && !termine.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

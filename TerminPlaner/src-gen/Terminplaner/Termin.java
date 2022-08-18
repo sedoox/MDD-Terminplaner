@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Termin extends EObject {
+
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -153,5 +154,27 @@ public interface Termin extends EObject {
 	 * @generated
 	 */
 	void setOrt(String value);
+	
+	/**
+	 * Returns the value of the '<em><b>Order</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Order</em>' attribute.
+	 * @see #setOrder(int)
+	 * @see Terminplaner.TerminplanerPackage#getTermin_Order()
+	 * @model
+	 * NOT @generated NOT
+	 */
+	int getOrder();
+
+	/**
+	 * Sets the value of the '{@link Terminplaner.Termin#getOrder <em>Order</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Order</em>' attribute.
+	 * @see #getOrder()
+	 * NOT @generated NOT
+	 */
+	void setOrder(int value);
 
 } // Termin

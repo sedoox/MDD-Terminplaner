@@ -240,7 +240,7 @@ public interface TerminplanerPackage extends EPackage {
 	int PROJEKT__NUTZER = 2;
 
 	/**
-	 * The feature id for the '<em><b>Termine</b></em>' reference.
+	 * The feature id for the '<em><b>Termine</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -495,10 +495,10 @@ public interface TerminplanerPackage extends EPackage {
 	EReference getProjekt_Nutzer();
 
 	/**
-	 * Returns the meta object for the reference '{@link Terminplaner.Projekt#getTermine <em>Termine</em>}'.
+	 * Returns the meta object for the reference list '{@link Terminplaner.Projekt#getTermine <em>Termine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Termine</em>'.
+	 * @return the meta object for the reference list '<em>Termine</em>'.
 	 * @see Terminplaner.Projekt#getTermine()
 	 * @see #getProjekt()
 	 * @generated
@@ -706,7 +706,7 @@ public interface TerminplanerPackage extends EPackage {
 		EReference PROJEKT__NUTZER = eINSTANCE.getProjekt_Nutzer();
 
 		/**
-		 * The meta object literal for the '<em><b>Termine</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Termine</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

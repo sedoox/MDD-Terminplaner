@@ -85,25 +85,15 @@ public interface Projekt extends EObject {
 	EList<Nutzer> getNutzer();
 
 	/**
-	 * Returns the value of the '<em><b>Termine</b></em>' reference.
+	 * Returns the value of the '<em><b>Termine</b></em>' reference list.
+	 * The list contents are of type {@link Terminplaner.Termin}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Termine</em>' reference.
-	 * @see #setTermine(Termin)
+	 * @return the value of the '<em>Termine</em>' reference list.
 	 * @see Terminplaner.TerminplanerPackage#getProjekt_Termine()
 	 * @model
 	 * @generated
 	 */
-	Termin getTermine();
-
-	/**
-	 * Sets the value of the '{@link Terminplaner.Projekt#getTermine <em>Termine</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Termine</em>' reference.
-	 * @see #getTermine()
-	 * @generated
-	 */
-	void setTermine(Termin value);
+	EList<Termin> getTermine();
 
 } // Projekt
